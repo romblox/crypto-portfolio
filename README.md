@@ -19,6 +19,20 @@ samples, guidance on mobile development, and a full API reference.
 ## flutter_svg  
 https://pub.dev/packages/flutter_svg  
 
-```sh
+```shell
 flutter pub add flutter_svg
+```
+
+
+## dio  
+A powerful HTTP networking package for Dart/Flutter  
+https://pub.dev/packages/dio  
+```shell
+dart pub add dio
+```
+## http
+A composable, Future-based library for making HTTP requests.  
+https://pub.dev/packages/http  
+```shell
+dart pub add http
 ```
