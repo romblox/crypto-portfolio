@@ -36,3 +36,10 @@ https://pub.dev/packages/http
 ```shell
 dart pub add http
 ```
+
+
+## Crypto coin API  
+```
+https://developers.coindesk.com/documentation/legacy/Price/multipleSymbolsPriceEndpoint
+```
+
