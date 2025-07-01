@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 final darkTheme = ThemeData(
-  // primarySwatch: Colors.yellow,
   scaffoldBackgroundColor: const Color.fromARGB(255, 60, 59, 59),
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color.fromARGB(255, 249, 241, 9),

@@ -6,7 +6,7 @@ class CryptoCompareApiRepository {
   Future<List<CryptoCoin>> getCoinsList() async {
     final dio = Dio();
     final response = await dio.get(
-      'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,SOL,AVAX,NEAR,DOT&tsyms=USD',
+      'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,SOL,AVAX,NEAR,DOT,ALGO&tsyms=USD',
     );
     debugPrint(response.toString());
 
@@ -16,7 +16,7 @@ class CryptoCompareApiRepository {
       final dataUSD = (e.value as Map<String, dynamic>)['USD'] as Map<String, dynamic>;
       final price = dataUSD['PRICE'];
       final coinImageUrl = dataUSD['IMAGEURL'];
-      return CryptoCoin(name: e.key, priceInUSD: price, coinImageUrl: coinImageUrl);
+      return CryptoCoin(name: e.key, priceInUSD: price, coinImageUrl: 'https://www.cryptocompare.com${coinImageUrl}');
     })
     .toList();
 
