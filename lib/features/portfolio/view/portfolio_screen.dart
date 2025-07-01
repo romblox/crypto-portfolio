@@ -1,6 +1,5 @@
 import 'package:coinlist/features/portfolio/widgets/widgets.dart';
 import 'package:coinlist/repositories/crypto_api/api_repository.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -40,7 +39,7 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
   }
 
   Future<void> _loadPortfolioLIst() async {
-    _cryptoCoinsList = await GetIt.I<CryptoCompareApiRepository>().getCoinsList();
+    _cryptoCoinsList = await GetIt.I<AbstractApiRepository>().getCoinsList();
     setState(() {});
   }
 }

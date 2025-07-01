@@ -6,6 +6,8 @@ import 'package:get_it/get_it.dart';
 
 void main() {
   // GetIt.I.registerSingleton(CryptoCompareApiRepository(dio: Dio()));\
-  GetIt.I.registerLazySingleton(() => CryptoCompareApiRepository(dio: Dio()));
+  GetIt.I.registerLazySingleton<AbstractApiRepository>(
+    () => CryptoCompareApiRepository(dio: Dio()),
+  );
   runApp(const CryptoPortfolio());
 }
