@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -74,27 +76,62 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
       body: ListView.separated(
         separatorBuilder: (context, index) => const Divider(),
         itemCount: 10,
-        itemBuilder: (context, i) => ListTile(
-          leading: SvgPicture.asset(
-            'assets/svg/bitcoin-logo.svg',
-            width: 45,
-            height: 45,
-          ),
-          trailing: Icon(Icons.arrow_forward_ios),
-          title: Text('Bitcoin', style: theme.textTheme.bodyMedium),
-          subtitle: Text("107 543.22", style: theme.textTheme.labelSmall),
-          onTap: () => {Navigator.of(context).pushNamed('/coin-details')},
-        ),
+        itemBuilder: (context, i) {
+          const String coinName = 'Bitcoin';
+          return ListTile(
+            leading: SvgPicture.asset(
+              'assets/svg/bitcoin-logo.svg',
+              width: 45,
+              height: 45,
+            ),
+            trailing: Icon(Icons.arrow_forward_ios),
+            title: Text(coinName, style: theme.textTheme.bodyMedium),
+            subtitle: Text("107 543.22", style: theme.textTheme.labelSmall),
+            onTap: () => {
+              Navigator.of(context).pushNamed(
+                '/coin-details',
+                arguments: coinName,
+              ),
+            },
+          );
+        },
       ),
     );
   }
 }
 
-class CoinDetailsScreen extends StatelessWidget {
+class CoinDetailsScreen extends StatefulWidget {
   const CoinDetailsScreen({super.key});
 
   @override
+  State<CoinDetailsScreen> createState() => _CoinDetailsScreenState();
+}
+
+class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
+  String? coinName;
+
+  @override
+  void didChangeDependencies() {
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (args == null) {
+      log('You must provide args');
+      return;
+    }
+
+    if (args is! String) {
+      log('You mast provide args as String');
+      return;
+    }
+
+    coinName = args;
+
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('Bitcoin')));
+    return Scaffold(
+      appBar: AppBar(title: Text(coinName ?? '...')),
+    );
   }
 }
