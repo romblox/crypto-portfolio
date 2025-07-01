@@ -1,6 +1,6 @@
 import 'package:coinlist/repositories/crypto_compsere_api/models/crypto_coin.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+// import 'package:flutter_svg/svg.dart';
 
 class CoinListTile extends StatelessWidget {
   const CoinListTile({super.key, required this.coin});
