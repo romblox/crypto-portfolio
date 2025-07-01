@@ -19,6 +19,12 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
   //   super.initState();
   // }
 
+  @override
+  void initState() {
+    _loadPortfolioLIst();
+    super.initState();
+  }
+
   List<CryptoCoin>? _cryptoCoinsList;
 
   @override
@@ -26,7 +32,7 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       body: (_cryptoCoinsList == null)
-          ? const SizedBox()
+          ? const Center(child: CircularProgressIndicator(),)
           : ListView.separated(
               separatorBuilder: (context, index) => const Divider(),
               itemCount: _cryptoCoinsList!.length,
@@ -35,13 +41,11 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
                 return CoinListTile(coin: coin);
               },
             ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.currency_exchange),
-        onPressed: () async {
-          _cryptoCoinsList = await CryptoCompareApiRepository().getCoinsList();
-          setState(() {});
-        },
-      ),
     );
+  }
+
+  Future<void> _loadPortfolioLIst() async {
+    _cryptoCoinsList = await CryptoCompareApiRepository().getCoinsList();
+    setState(() {});
   }
 }
