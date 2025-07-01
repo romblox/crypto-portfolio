@@ -19,7 +19,7 @@ class CoinListTile extends StatelessWidget {
       trailing: Icon(Icons.arrow_forward_ios),
       title: Text(coin.name, style: theme.textTheme.bodyMedium),
       subtitle: Text(
-        '${coin.priceInUSD} USD',
+        '${coin.priceInUSD.toStringAsFixed(2)} USD',
         style: theme.textTheme.labelSmall,
       ),
       onTap: () => {
