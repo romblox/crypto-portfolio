@@ -1,5 +1,6 @@
 import 'package:coinlist/features/portfolio/widgets/widgets.dart';
 import 'package:coinlist/repositories/crypto_api/api_repository.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class PortfolioListScreen extends StatefulWidget {
@@ -44,7 +45,7 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
   }
 
   Future<void> _loadPortfolioLIst() async {
-    _cryptoCoinsList = await CryptoCompareApiRepository().getCoinsList();
+    _cryptoCoinsList = await CryptoCompareApiRepository(dio: Dio()).getCoinsList();
     setState(() {});
   }
 }

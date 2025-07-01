@@ -3,9 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/rendering.dart';
 
 class CryptoCompareApiRepository implements InterfaceApiRepository {
+  CryptoCompareApiRepository({required this.dio});
+  
+  final Dio dio;
+
   @override
   Future<List<CryptoCoin>> getCoinsList() async {
-    final dio = Dio();
     final response = await dio.get(
       'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,ETC,NEO,GAS,SOL,AVAX,NEAR,ATOM,DOT,ALGO,OP,ARB,FIL,KAVA,DAI,STRK,ZK&tsyms=USD',
     );
