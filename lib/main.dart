@@ -43,21 +43,21 @@ class CryptoPortfolio extends StatelessWidget {
           iconColor: Colors.white,
         )
       ),
-      home: const MyHomePage(title: 'Crypto portfolio'),
+      home: const PortfolioListScreen(title: 'Crypto portfolio'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class PortfolioListScreen extends StatefulWidget {
+  const PortfolioListScreen({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PortfolioListScreen> createState() => _PortfolioListScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _PortfolioListScreenState extends State<PortfolioListScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -84,5 +84,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+}
+
+class CoinDetailsScreen extends StatelessWidget {
+  const CoinDetailsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold();
   }
 }
