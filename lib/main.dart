@@ -1,7 +1,7 @@
 import 'dart:developer';
 
+import 'package:coinlist/features/portfolio/portfolio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const CryptoPortfolio());
@@ -53,52 +53,7 @@ class CryptoPortfolio extends StatelessWidget {
   }
 }
 
-class PortfolioListScreen extends StatefulWidget {
-  const PortfolioListScreen({super.key, required this.title});
 
-  final String title;
-
-  @override
-  State<PortfolioListScreen> createState() => _PortfolioListScreenState();
-}
-
-class _PortfolioListScreenState extends State<PortfolioListScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: theme.colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      // body: ListView.builder(
-      body: ListView.separated(
-        separatorBuilder: (context, index) => const Divider(),
-        itemCount: 10,
-        itemBuilder: (context, i) {
-          const String coinName = 'Bitcoin';
-          return ListTile(
-            leading: SvgPicture.asset(
-              'assets/svg/bitcoin-logo.svg',
-              width: 45,
-              height: 45,
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            title: Text(coinName, style: theme.textTheme.bodyMedium),
-            subtitle: Text("107 543.22", style: theme.textTheme.labelSmall),
-            onTap: () => {
-              Navigator.of(context).pushNamed(
-                '/coin-details',
-                arguments: coinName,
-              ),
-            },
-          );
-        },
-      ),
-    );
-  }
-}
 
 class CoinDetailsScreen extends StatefulWidget {
   const CoinDetailsScreen({super.key});
