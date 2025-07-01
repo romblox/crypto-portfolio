@@ -39,9 +39,7 @@ class CryptoPortfolio extends StatelessWidget {
           ),
         ),
         dividerTheme: DividerThemeData(color: Colors.white10),
-        listTileTheme: ListTileThemeData(
-          iconColor: Colors.white,
-        )
+        listTileTheme: ListTileThemeData(iconColor: Colors.white),
       ),
       home: const PortfolioListScreen(title: 'Crypto portfolio'),
     );
@@ -58,7 +56,6 @@ class PortfolioListScreen extends StatefulWidget {
 }
 
 class _PortfolioListScreenState extends State<PortfolioListScreen> {
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -81,6 +78,13 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
           trailing: Icon(Icons.arrow_forward_ios),
           title: Text('Bitcoin', style: theme.textTheme.bodyMedium),
           subtitle: Text("107 543.22", style: theme.textTheme.labelSmall),
+          onTap: () => {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => CoinDetailsScreen(),
+              )
+            ),
+          },
         ),
       ),
     );
@@ -92,6 +96,8 @@ class CoinDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBar(title: Text('Bitcoin'),),
+    );
   }
 }
