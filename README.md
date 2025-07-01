@@ -43,3 +43,20 @@ dart pub add http
 https://developers.coindesk.com/documentation/legacy/Price/multipleSymbolsPriceEndpoint
 ```
 
+# Dependency Injecton  
+
+## get_it  
+This is a simple Service Locator for Dart and Flutter projects with some additional goodies highly inspired by Splat. It can be used instead of InheritedWidget or Provider to access objects e.g. from your UI.  
+
+Typical usage:
+- Accessing service objects like REST API clients or databases so that they easily can be mocked.
+- Accessing View/AppModels/Managers/BLoCs from Flutter Views
+
+```shell
+dart pub add get_it
+```
+
+## injectable  
+```shell
+dart pub add injectable
+```
