@@ -1,13 +1,11 @@
+import 'package:coinlist/repositories/crypto_compsere_api/models/crypto_coin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CoinListTile extends StatelessWidget {
-  const CoinListTile({
-    super.key,
-    required this.coinName,
-  });
+  const CoinListTile({super.key, required this.coin});
 
-  final String coinName;
+  final CryptoCoin coin;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +17,13 @@ class CoinListTile extends StatelessWidget {
         height: 45,
       ),
       trailing: Icon(Icons.arrow_forward_ios),
-      title: Text(coinName, style: theme.textTheme.bodyMedium),
-      subtitle: Text("107 543.22", style: theme.textTheme.labelSmall),
+      title: Text(coin.name, style: theme.textTheme.bodyMedium),
+      subtitle: Text(
+        '${coin.priceInUSD} USD',
+        style: theme.textTheme.labelSmall,
+      ),
       onTap: () => {
-        Navigator.of(context).pushNamed(
-          '/coin-details',
-          arguments: coinName,
-        ),
+        Navigator.of(context).pushNamed('/coin-details', arguments: coin.name),
       },
     );
   }
