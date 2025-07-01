@@ -26,6 +26,7 @@ class CryptoPortfolio extends StatelessWidget {
             fontSize: 24,
             fontWeight: FontWeight.w500,
           ),
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         textTheme: TextTheme(
           bodyMedium: TextStyle(
@@ -41,7 +42,11 @@ class CryptoPortfolio extends StatelessWidget {
         dividerTheme: DividerThemeData(color: Colors.white10),
         listTileTheme: ListTileThemeData(iconColor: Colors.white),
       ),
-      home: const PortfolioListScreen(title: 'Crypto portfolio'),
+      routes: {
+        '/': (context) => PortfolioListScreen(title: 'Crypto portfolio'),
+        '/coin-details': (context) => CoinDetailsScreen(),
+      },
+      // home: const PortfolioListScreen(title: 'Crypto portfolio'),
     );
   }
 }
@@ -78,13 +83,7 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
           trailing: Icon(Icons.arrow_forward_ios),
           title: Text('Bitcoin', style: theme.textTheme.bodyMedium),
           subtitle: Text("107 543.22", style: theme.textTheme.labelSmall),
-          onTap: () => {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => CoinDetailsScreen(),
-              )
-            ),
-          },
+          onTap: () => {Navigator.of(context).pushNamed('/coin-details')},
         ),
       ),
     );
@@ -96,8 +95,6 @@ class CoinDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Bitcoin'),),
-    );
+    return Scaffold(appBar: AppBar(title: Text('Bitcoin')));
   }
 }
