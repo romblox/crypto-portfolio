@@ -1,12 +1,20 @@
+import 'package:coinlist/repositories/crypto_api/api_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'portfolio_event.dart';
 part "portfolio_state.dart";
 
 class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
-  PortfolioBloc() : super(PortfolioInitial()) {
-    on<LoadPortfolio>((event, emit) {
-      print('[Portfoli on BLOC triggered on LoadPortfolio event..');
+  final AbstractApiRepository apiRepository;
+
+  PortfolioBloc(this.apiRepository) : super(PortfolioInitial()) {
+    on<LoadPortfolio>((event, emit) async {
+      try {
+        final coinsList = await apiRepository.getCoinsList();
+        emit(PortfolioLoaded(coinsList: coinsList));
+      } catch (e) {
+        emit(PortfolioLoadingFailure(exception: e));
+      }
     });
   }
 }
