@@ -28,53 +28,56 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
-      body: BlocBuilder<PortfolioBloc, PortfolioState>(
-        bloc: _portfolioBloc,
-        builder: (context, state) {
-          if (state is PortfolioLoading) {
-            print("Portfolio was manually triggered for reload");
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: RefreshIndicator(
+        onRefresh: () async {
+          _portfolioBloc.add(LoadPortfolio());
+        },
+        child: BlocBuilder<PortfolioBloc, PortfolioState>(
+          bloc: _portfolioBloc,
+          builder: (context, state) {
+            if (state is PortfolioLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          if (state is PortfolioLoaded) {
-            print('Portfolio was loaded successfully!');
-            return ListView.separated(
-              separatorBuilder: (context, index) => const Divider(),
-              itemCount: state.coinsList.length,
-              itemBuilder: (context, i) {
-                final CryptoCoin coin = state.coinsList[i];
-                return CoinListTile(coin: coin);
-              },
-            );
-          }
+            if (state is PortfolioLoaded) {
+              return ListView.separated(
+                separatorBuilder: (context, index) => const Divider(),
+                itemCount: state.coinsList.length,
+                itemBuilder: (context, i) {
+                  final CryptoCoin coin = state.coinsList[i];
+                  return CoinListTile(coin: coin);
+                },
+              );
+            }
 
-          if (state is PortfolioLoadingFailure) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Something went wrong!',
-                    style: darkTheme.textTheme.headlineMedium,
-                  ),
-                  Text('Please try again late.'),
-                  SizedBox(height: 30),
-                  OutlinedButton(
-                    onPressed: () => _portfolioBloc.add(LoadPortfolio()),
-                    child: Text(
-                      'Reload',
-                      style: TextStyle(
-                        color: const Color.fromARGB(178, 255, 235, 59),
+            if (state is PortfolioLoadingFailure) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Something went wrong!',
+                      style: darkTheme.textTheme.headlineMedium,
+                    ),
+                    Text('Please try again late.'),
+                    SizedBox(height: 30),
+                    OutlinedButton(
+                      onPressed: () => _portfolioBloc.add(LoadPortfolio()),
+                      child: Text(
+                        'Reload',
+                        style: TextStyle(
+                          color: const Color.fromARGB(178, 255, 235, 59),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
+                  ],
+                ),
+              );
+            }
+            return const Center(child: CircularProgressIndicator());
+          },
+        ),
       ),
     );
   }

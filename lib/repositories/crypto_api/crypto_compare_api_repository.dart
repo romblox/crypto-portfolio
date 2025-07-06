@@ -1,6 +1,5 @@
 import 'package:coinlist/repositories/crypto_api/api_repository.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/rendering.dart';
 
 class CryptoCompareApiRepository implements AbstractApiRepository {
   CryptoCompareApiRepository({required this.dio});
