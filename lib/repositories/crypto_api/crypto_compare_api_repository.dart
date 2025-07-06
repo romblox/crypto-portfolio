@@ -24,7 +24,7 @@ class CryptoCompareApiRepository implements AbstractApiRepository {
       return CryptoCoin(
         name: e.key,
         priceInUSD: price,
-        coinImageUrl: 'https://www.cryptocompare.com${coinImageUrl}',
+        coinImageUrl: 'https://www.cryptocompare.com$coinImageUrl',
       );
     }).toList();
 
