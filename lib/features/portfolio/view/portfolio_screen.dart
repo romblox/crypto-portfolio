@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coinlist/features/portfolio/bloc/portfolio_bloc.dart';
 import 'package:coinlist/features/portfolio/widgets/widgets.dart';
 import 'package:coinlist/repositories/crypto_api/api_repository.dart';
@@ -20,7 +22,7 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
 
   @override
   void initState() {
-    _portfolioBloc.add(LoadPortfolio());
+    _portfolioBloc.add(LoadPortfolio(completer: null));
     super.initState();
   }
 
@@ -30,7 +32,9 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
       appBar: AppBar(title: Text(widget.title)),
       body: RefreshIndicator(
         onRefresh: () async {
-          _portfolioBloc.add(LoadPortfolio());
+          final completer = Completer();
+          _portfolioBloc.add(LoadPortfolio(completer: completer));
+          return completer.future;
         },
         child: BlocBuilder<PortfolioBloc, PortfolioState>(
           bloc: _portfolioBloc,
@@ -63,7 +67,8 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
                     Text('Please try again late.'),
                     SizedBox(height: 30),
                     OutlinedButton(
-                      onPressed: () => _portfolioBloc.add(LoadPortfolio()),
+                      onPressed: () =>
+                          _portfolioBloc.add(LoadPortfolio(completer: null)),
                       child: Text(
                         'Reload',
                         style: TextStyle(

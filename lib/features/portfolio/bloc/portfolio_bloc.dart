@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coinlist/repositories/crypto_api/api_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +17,8 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         emit(PortfolioLoaded(coinsList: coinsList));
       } catch (e) {
         emit(PortfolioLoadingFailure(exception: e));
+      } finally {
+        event.completer?.complete();
       }
     });
   }
