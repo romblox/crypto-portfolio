@@ -31,7 +31,13 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
       body: BlocBuilder<PortfolioBloc, PortfolioState>(
         bloc: _portfolioBloc,
         builder: (context, state) {
+          if (state is PortfolioLoading) {
+            print("Portfolio was manually triggered for reload");
+            return const Center(child: CircularProgressIndicator());
+          }
+
           if (state is PortfolioLoaded) {
+            print('Portfolio was loaded successfully!');
             return ListView.separated(
               separatorBuilder: (context, index) => const Divider(),
               itemCount: state.coinsList.length,
@@ -48,8 +54,21 @@ class _PortfolioListScreenState extends State<PortfolioListScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Something went wrong!', style: darkTheme.textTheme.headlineMedium),
+                  Text(
+                    'Something went wrong!',
+                    style: darkTheme.textTheme.headlineMedium,
+                  ),
                   Text('Please try again late.'),
+                  SizedBox(height: 30),
+                  OutlinedButton(
+                    onPressed: () => _portfolioBloc.add(LoadPortfolio()),
+                    child: Text(
+                      'Reload',
+                      style: TextStyle(
+                        color: const Color.fromARGB(178, 255, 235, 59),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             );
