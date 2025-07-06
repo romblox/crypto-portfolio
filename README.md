@@ -88,3 +88,15 @@ flutter pub add flutter_bloc
 bloc by Felix Angelov  
 https://marketplace.visualstudio.com/items?itemName=FelixAngelov.bloc  
 
+## equatable  
+Simplify Equality Comparisons  
+
+With Dart:
+```shell
+dart pub add equatable
+```
+
+With Flutter:
+```shell
+flutter pub add equatable
+```
