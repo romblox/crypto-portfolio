@@ -60,3 +60,25 @@ dart pub add get_it
 ```shell
 dart pub add injectable
 ```
+
+## bloc  
+A predictable state management library that helps implement the BLoC (Business Logic Component) design pattern.  
+
+https://pub.dev/packages/bloc
+
+With Dart:
+```shell
+dart pub add bloc
+```
+
+With Flutter:
+```shell
+flutter pub add bloc
+```
+
+### flutter_bloc 9.1.1  
+https://pub.dev/packages/flutter_bloc   
+
+```shell
+flutter pub add flutter_bloc
+```
