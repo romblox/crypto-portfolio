@@ -12,7 +12,7 @@ class CryptoCompareApiRepository implements AbstractApiRepository {
     final response = await dio.get(
       'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,ETC,NEO,GAS,SOL,AVAX,NEAR,ATOM,DOT,ALGO,OP,ARB,FIL,KAVA,DAI,STRK,ZK&tsyms=USD',
     );
-    debugPrint(response.toString());
+    // debugPrint(response.toString());
 
     final data = response.data as Map<String, dynamic>;
     final dataRaw = data['RAW'] as Map<String, dynamic>;

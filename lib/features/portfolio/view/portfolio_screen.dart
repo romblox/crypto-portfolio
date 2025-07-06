@@ -1,3 +1,4 @@
+import 'package:coinlist/features/portfolio/bloc/portfolio_bloc.dart';
 import 'package:coinlist/features/portfolio/widgets/widgets.dart';
 import 'package:coinlist/repositories/crypto_api/api_repository.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +14,12 @@ class PortfolioListScreen extends StatefulWidget {
 }
 
 class _PortfolioListScreenState extends State<PortfolioListScreen> {
+  final _portfolioBloc = PortfolioBloc();
+
+
   @override
   void initState() {
+    _portfolioBloc.add(LoadPortfolio());
     _loadPortfolioLIst();
     super.initState();
   }
