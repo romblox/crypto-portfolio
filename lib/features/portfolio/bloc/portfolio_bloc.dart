@@ -12,7 +12,10 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
   PortfolioBloc(this.apiRepository) : super(PortfolioInitial()) {
     on<LoadPortfolio>((event, emit) async {
       try {
-        emit(PortfolioLoading());
+        if (state is! PortfolioLoaded) {
+          emit(PortfolioLoading());
+        }
+        
         final coinsList = await apiRepository.getCoinsList();
         emit(PortfolioLoaded(coinsList: coinsList));
       } catch (e) {
