@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:coinlist/repositories/crypto_api/api_repository.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'portfolio_event.dart';
