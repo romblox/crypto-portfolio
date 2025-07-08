@@ -20,11 +20,11 @@ class CoinListTile extends StatelessWidget {
       trailing: Icon(Icons.arrow_forward_ios),
       title: Text(coin.name, style: theme.textTheme.bodyMedium),
       subtitle: Text(
-        '${coin.priceInUSD.toStringAsFixed(2)} USD',
+        '${coin.priceInUSD.toStringAsFixed(4)} USD',
         style: theme.textTheme.labelSmall,
       ),
       onTap: () => {
-        Navigator.of(context).pushNamed('/coin-details', arguments: coin.name),
+        Navigator.of(context).pushNamed('/coin-details', arguments: coin),
       },
     );
   }

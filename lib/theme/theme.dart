@@ -25,6 +25,7 @@ final darkTheme = ThemeData(
       color: Colors.white.withValues(alpha: 0.6),
       fontSize: 18,
     ),
+    headlineMedium: TextStyle(color: Colors.white, fontSize: 28),
   ),
   dividerTheme: DividerThemeData(color: Colors.white10),
   listTileTheme: ListTileThemeData(iconColor: Colors.white),
