@@ -1,12 +1,28 @@
 part of 'details_bloc.dart';
 
-
-class DetailsState {}
+class DetailsState extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
 class DetailsInitial extends DetailsState {}
 
 class DetailsLoading extends DetailsState {}
 
-class DetailsLoaded extends DetailsState {}
+class DetailsLoaded extends DetailsState {
+  final CryptoCoinDetails coinDetails;
 
-class DetailsFailure extends DetailsState {}
+  DetailsLoaded({required this.coinDetails});
+
+  @override
+  List<Object?> get props => super.props..add(coinDetails);
+}
+
+class DetailsLoadingFailure extends DetailsState {
+  final Object exception;
+
+  DetailsLoadingFailure({required this.exception});
+
+  @override
+  List<Object?> get props => super.props..add(exception);
+}
