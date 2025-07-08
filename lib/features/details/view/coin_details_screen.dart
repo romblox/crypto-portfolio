@@ -15,20 +15,19 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
   @override
   void didChangeDependencies() {
     final args = ModalRoute.of(context)?.settings.arguments;
+    assert(args != null && args is String, 'You must provide String to arguments in onTap routes');
 
-    // assert(args != null && args is String, 'You must provide String to arguments in onTap routes');
+    // if (args == null) {
+    //   log('You must provide args in route to CoinDetailsScreen');
+    //   return;
+    // }
 
-    if (args == null) {
-      log('You must provide args in route to CoinDetailsScreen');
-      return;
-    }
+    // if (args is! String) {
+    //   log('YYou must provide args in route to CoinDetailsScreen as String');
+    //   return;
+    // }
 
-    if (args is! String) {
-      log('YYou must provide args in route to CoinDetailsScreen as String');
-      return;
-    }
-
-    coinName = args;
+    coinName = args as String;
     setState(() {});
 
     super.didChangeDependencies();
