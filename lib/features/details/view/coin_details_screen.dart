@@ -1,5 +1,7 @@
-import 'dart:developer';
+// import 'dart:developer';
 
+import 'package:coinlist/features/details/details.dart';
+import 'package:coinlist/repositories/crypto_api/api_repository.dart';
 import 'package:flutter/material.dart';
 
 class CoinDetailsScreen extends StatefulWidget {
@@ -10,12 +12,15 @@ class CoinDetailsScreen extends StatefulWidget {
 }
 
 class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
-  String? coinName;
+  CryptoCoin? coin;
 
   @override
   void didChangeDependencies() {
     final args = ModalRoute.of(context)?.settings.arguments;
-    assert(args != null && args is String, 'You must provide String to arguments in onTap routes');
+    assert(
+      args != null && args is CryptoCoin,
+      'You must provide String to arguments in onTap routes',
+    );
 
     // if (args == null) {
     //   log('You must provide args in route to CoinDetailsScreen');
@@ -27,7 +32,7 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
     //   return;
     // }
 
-    coinName = args as String;
+    coin = args as CryptoCoin;
     setState(() {});
 
     super.didChangeDependencies();
@@ -36,7 +41,39 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(coinName ?? '...')),
+      // appBar: AppBar(title: Text(coin!.name)),
+      appBar: AppBar(),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              width: 160,
+              height: 160,
+              child: Image.network(coin!.coinImageUrl),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              coin!.name,
+              style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 18),
+            BaseCard(
+              child: Center(
+                child: Text(
+                  '${coin!.priceInUSD.toStringAsFixed(2)} \$'
+                ),
+              ),
+            ),
+            BaseCard(child: Column(
+              children: [
+                  DetailsDataRow(title: 'High 24 Hour', value:'3456343456 \$'),
+                  DetailsDataRow(title: 'Low 24 Hour', value:'67345673 \$'),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
