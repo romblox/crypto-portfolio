@@ -19,16 +19,17 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
     // assert(args != null && args is String, 'You must provide String to arguments in onTap routes');
 
     if (args == null) {
-      log('You must provide args');
+      log('You must provide args in route to CoinDetailsScreen');
       return;
     }
 
     if (args is! String) {
-      log('You mast provide args as String');
+      log('YYou must provide args in route to CoinDetailsScreen as String');
       return;
     }
 
     coinName = args;
+    setState(() {});
 
     super.didChangeDependencies();
   }
