@@ -11,18 +11,15 @@ part 'details_state.dart';
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   final AbstractApiRepository apiRepository;
 
-
   DetailsBloc(this.apiRepository) : super(DetailsInitial()) {
     on<LoadDetails>((event, emit) async {
       try {
         final coinDetails = await apiRepository.getCoinDetails(event.coinCode);
         log(coinDetails.toString());
-        emit(DetailsLoaded(coinDetails: coinDetails));
-
+        emit(DetailsLoaded(coinDetails));
       } catch (e) {
-        emit(DetailsLoadingFailure(exception: e));
+        emit(DetailsLoadingFailure(e));
       }
-
     });
   }
 }

@@ -12,7 +12,7 @@ class DetailsLoading extends DetailsState {}
 class DetailsLoaded extends DetailsState {
   final CryptoCoinDetails coinDetails;
 
-  DetailsLoaded({required this.coinDetails});
+  DetailsLoaded(this.coinDetails);
 
   @override
   List<Object?> get props => super.props..add(coinDetails);
@@ -21,7 +21,7 @@ class DetailsLoaded extends DetailsState {
 class DetailsLoadingFailure extends DetailsState {
   final Object exception;
 
-  DetailsLoadingFailure({required this.exception});
+  DetailsLoadingFailure(this.exception);
 
   @override
   List<Object?> get props => super.props..add(exception);
