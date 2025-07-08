@@ -24,7 +24,7 @@ class CoinListTile extends StatelessWidget {
         style: theme.textTheme.labelSmall,
       ),
       onTap: () => {
-        Navigator.of(context).pushNamed('/coin-details', arguments: coin.name),
+        Navigator.of(context).pushNamed('/coin-details', arguments: coin),
       },
     );
   }
